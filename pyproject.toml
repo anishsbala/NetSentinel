@@ -1,0 +1,11 @@
+[tool.pytest.ini_options]
+testpaths = ["python/tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+src = ["python/scanner", "python/agent"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
