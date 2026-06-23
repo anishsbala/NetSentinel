@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NetSentinel local-lab security operations dashboard">
+  <title>NetSentinel | Lab Security Console</title>
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">LOCAL LAB SECURITY OPERATIONS</p>
+      <h1>NetSentinel</h1>
+    </div>
+    <div class="status-area">
+      <span id="api-status" class="status status-loading">Connecting</span>
+      <button id="refresh-button" type="button">Refresh data</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="safety-banner" aria-label="Safety notice">
+      Defensive lab use only. Scan only systems you own or are explicitly authorized to test.
+    </section>
+
+    <section class="metrics" aria-label="Environment summary">
+      <article><span>Devices</span><strong id="device-count">-</strong></article>
+      <article><span>Open ports</span><strong id="port-count">-</strong></article>
+      <article><span>Active alerts</span><strong id="alert-count">-</strong></article>
+      <article><span>Agent reports</span><strong id="heartbeat-count">-</strong></article>
+    </section>
+
+    <p id="error-message" class="error-message" role="alert" hidden></p>
+
+    <section class="panel panel-wide">
+      <div class="panel-heading">
+        <div><p class="eyebrow">ASSET INVENTORY</p><h2>Discovered devices</h2></div>
+      </div>
+      <div class="table-wrap"><table id="devices-table"></table></div>
+    </section>
+
+    <div class="panel-grid">
+      <section class="panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">EXPOSURE</p><h2>Open ports</h2></div>
+        </div>
+        <div class="table-wrap"><table id="ports-table"></table></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">DETECTIONS</p><h2>Alerts</h2></div>
+        </div>
+        <div class="table-wrap"><table id="alerts-table"></table></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">DISCOVERY</p><h2>Scan history</h2></div>
+        </div>
+        <div class="table-wrap"><table id="scans-table"></table></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">TELEMETRY</p><h2>Agent heartbeats</h2></div>
+        </div>
+        <div class="table-wrap"><table id="heartbeats-table"></table></div>
+      </section>
+    </div>
+
+    <section class="panel panel-wide">
+      <div class="panel-heading">
+        <div><p class="eyebrow">POLICY REVIEW</p><h2>Firewall findings</h2></div>
+      </div>
+      <div class="table-wrap"><table id="firewall-table"></table></div>
+    </section>
+  </main>
+
+  <footer>
+    <span>NetSentinel defensive lab platform</span>
+    <span id="last-updated">Not yet updated</span>
+  </footer>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
