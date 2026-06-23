@@ -68,10 +68,11 @@ public sealed class AgentsController(
         }
         catch (ArgumentException exception)
         {
-            return ValidationProblem(new Dictionary<string, string[]>
-            {
-                ["heartbeat"] = [exception.Message]
-            });
+            return BadRequest(new ValidationProblemDetails(
+                new Dictionary<string, string[]>
+                {
+                    ["heartbeat"] = [exception.Message]
+                }));
         }
     }
 }

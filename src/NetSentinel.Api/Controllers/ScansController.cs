@@ -53,10 +53,11 @@ public sealed class ScansController(
         }
         catch (ArgumentException exception)
         {
-            return ValidationProblem(new Dictionary<string, string[]>
-            {
-                ["scan"] = [exception.Message]
-            });
+            return BadRequest(new ValidationProblemDetails(
+                new Dictionary<string, string[]>
+                {
+                    ["scan"] = [exception.Message]
+                }));
         }
     }
 }

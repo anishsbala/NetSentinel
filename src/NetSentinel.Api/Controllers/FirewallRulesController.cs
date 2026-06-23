@@ -48,10 +48,11 @@ public sealed class FirewallRulesController(
         if (!Ipv4Cidr.TryParse(request.SourceCidr, out _)
             || !Ipv4Cidr.TryParse(request.DestinationCidr, out _))
         {
-            return ValidationProblem(new Dictionary<string, string[]>
-            {
-                ["cidr"] = ["SourceCidr and DestinationCidr must be valid IPv4 CIDR ranges."]
-            });
+            return BadRequest(new ValidationProblemDetails(
+                new Dictionary<string, string[]>
+                {
+                    ["cidr"] = ["SourceCidr and DestinationCidr must be valid IPv4 CIDR ranges."]
+                }));
         }
 
         if (request.DeviceId.HasValue
@@ -59,10 +60,11 @@ public sealed class FirewallRulesController(
                 x => x.Id == request.DeviceId.Value,
                 cancellationToken))
         {
-            return ValidationProblem(new Dictionary<string, string[]>
-            {
-                ["deviceId"] = ["The specified device does not exist."]
-            });
+            return BadRequest(new ValidationProblemDetails(
+                new Dictionary<string, string[]>
+                {
+                    ["deviceId"] = ["The specified device does not exist."]
+                }));
         }
 
         var rule = new FirewallRule
