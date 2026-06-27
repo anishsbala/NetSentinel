@@ -1,0 +1,29 @@
+@baseUrl = http://localhost:5080
+
+GET {{baseUrl}}/health
+
+###
+
+GET {{baseUrl}}/api/devices
+Accept: application/json
+
+###
+
+POST {{baseUrl}}/api/firewall-rules
+Content-Type: application/json
+
+{
+  "name": "Review global RDP access",
+  "direction": "Inbound",
+  "action": "Allow",
+  "protocol": "TCP",
+  "portNumber": 3389,
+  "sourceCidr": "0.0.0.0/0",
+  "destinationCidr": "192.168.56.20/32",
+  "enabled": true
+}
+
+###
+
+GET {{baseUrl}}/api/alerts
+Accept: application/json
