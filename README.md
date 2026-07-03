@@ -179,7 +179,3 @@ python -m pytest python\tests
 - Historical metrics, retention policies, and dashboard charts
 - Container images and deployment manifests for the full stack
 
-## License
-
-No license has been selected yet. Treat the repository as all rights reserved
-until a license is added.
