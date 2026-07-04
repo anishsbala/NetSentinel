@@ -1,5 +1,8 @@
 # NetSentinel
 
+[![CI](https://github.com/anishsbala/NetSentinel/actions/workflows/ci.yml/badge.svg)](https://github.com/anishsbala/NetSentinel/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 NetSentinel is an enterprise-style network security and automation platform for
 an isolated local lab. It combines an ASP.NET Core API, SQL Server persistence,
 a conservative Python TCP scanner, simulated endpoint telemetry, firewall-rule
@@ -20,6 +23,16 @@ The MVP demonstrates:
 - Detection of exposed RDP, SSH, SQL Server, and conflicting rules
 - A dependency-free dashboard served by ASP.NET Core
 - Docker-based local infrastructure and automated tests
+
+## Engineering highlights
+
+| Area | Implementation |
+| --- | --- |
+| Defensive networking | Bounded TCP connection checks restricted to loopback and RFC1918 targets |
+| Backend design | ASP.NET Core controllers, DTOs, services, EF Core entities, and SQL Server persistence |
+| Security analysis | Firewall-rule evaluation for exposed management ports, untrusted SQL access, and conflicting rules |
+| Automation | Python scanner and telemetry agent with typed payloads, logging, retries, and conservative pacing |
+| Operations | Static dashboard, health checks, Docker Compose infrastructure, and cross-language CI |
 
 ## Architecture
 
@@ -54,6 +67,13 @@ The scanner enforces:
 - At most 256 addresses and 20 ports per run
 - At most 20 workers, bounded timeouts, and configurable pacing
 - TCP connection attempts only
+
+## Current limitations
+
+- Host discovery and port checks use TCP connection attempts rather than raw packet capture.
+- Agent telemetry is simulated and is intended to exercise the ingestion and dashboard paths.
+- Authentication, authorization, and multi-tenant isolation are outside the current local-lab MVP.
+- The dashboard prioritizes operational clarity over production frontend complexity.
 
 ## Prerequisites
 
